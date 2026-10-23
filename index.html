@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mountain Ranch Labs | Engineering Systems Consulting</title>
+<meta name="description" content="Mountain Ranch Labs helps manufacturers audit, simplify, and run their CAD, FEA, PDM, and PLM environments.">
+<link rel="icon" href="assets/favicon.ico">
+<link rel="apple-touch-icon" href="assets/mrl-app-icon-180.png">
+<meta property="og:title" content="Mountain Ranch Labs">
+<meta property="og:description" content="Vendor-neutral consulting for manufacturers' CAD, FEA, PDM, and PLM environments.">
+<meta property="og:image" content="https://mountainranchlabs.com/assets/mrl-app-icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #18222E;
+    --pine: #2E5A4C;
+    --gold: #D9A034;
+    --stone: #F5F4F0;
+    --paper: #FFFFFF;
+    --muted: #5A6470;
+    --rule: #DDDAD2;
+    --ink-soft: #243241;
+    --radius: 10px;
+    --wrap: 1100px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--stone);
+    color: var(--ink);
+    font: 17px/1.6 "IBM Plex Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: "Archivo", sans-serif; line-height: 1.15; margin: 0 0 .5em; }
+  h1 { font-weight: 800; font-size: clamp(2.1rem, 5vw, 3.4rem); letter-spacing: -.02em; }
+  h2 { font-weight: 800; font-size: clamp(1.6rem, 3.4vw, 2.3rem); letter-spacing: -.01em; }
+  h3 { font-weight: 700; font-size: 1.2rem; }
+  p { margin: 0 0 1em; }
+  a { color: var(--pine); }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
+  .eyebrow {
+    font: 500 .8rem/1 "IBM Plex Mono", monospace;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--pine); margin-bottom: 14px; display: block;
+  }
+
+  /* Header */
+  header.site {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(24,34,46,.97);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  header.site img { height: 38px; width: auto; display: block; }
+  nav a {
+    color: var(--stone); text-decoration: none; font-size: .95rem; margin-left: 26px; opacity: .85;
+  }
+  nav a:hover { opacity: 1; }
+  nav a.cta {
+    opacity: 1; background: var(--gold); color: var(--ink); font-weight: 600;
+    padding: 8px 16px; border-radius: 6px;
+  }
+  @media (max-width: 760px) { nav a:not(.cta) { display: none; } header.site img { height: 30px; } }
+
+  /* Hero */
+  .hero { background: var(--ink); color: var(--stone); padding: 88px 0 0; overflow: hidden; }
+  .hero .eyebrow { color: var(--gold); }
+  .hero p.lead { font-size: 1.2rem; max-width: 640px; color: #C9CED4; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 14px; margin: 30px 0 0; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600;
+    padding: 13px 22px; border-radius: 8px; font-size: 1rem; border: 2px solid transparent;
+    cursor: pointer; font-family: inherit;
+  }
+  .btn-gold { background: var(--gold); color: var(--ink); }
+  .btn-gold:hover { background: #E4AE47; }
+  .btn-ghost { color: var(--stone); border-color: rgba(245,244,240,.35); }
+  .btn-ghost:hover { border-color: var(--stone); }
+  .ridge { display: block; width: 100%; height: auto; margin-top: 64px; }
+
+  section { padding: 88px 0; }
+  section.alt { background: var(--paper); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .intro { max-width: 720px; color: var(--muted); font-size: 1.08rem; }
+
+  /* Services */
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 40px; }
+  .card {
+    background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius);
+    padding: 26px 24px;
+  }
+  section.alt .card { background: var(--stone); }
+  .card p { color: var(--muted); margin: 0; font-size: .98rem; }
+  .card .num { font: 500 .8rem "IBM Plex Mono", monospace; color: var(--gold); display: block; margin-bottom: 10px; letter-spacing: .1em; }
+
+  /* Process */
+  .steps { list-style: none; padding: 0; margin: 44px 0 0; display: grid; gap: 0; grid-template-columns: repeat(4, 1fr); position: relative; }
+  .steps::before { content: ""; position: absolute; top: 11px; left: 12px; right: 12px; height: 2px; background: var(--rule); }
+  .steps li { position: relative; padding: 38px 18px 0 0; }
+  .steps li::before {
+    content: ""; position: absolute; top: 2px; left: 0; width: 20px; height: 20px; border-radius: 50%;
+    background: var(--paper); border: 3px solid var(--ink);
+  }
+  .steps li:last-child::before { background: var(--gold); border-color: var(--gold); }
+  .steps h3 { margin-bottom: 6px; }
+  .steps p { color: var(--muted); font-size: .97rem; margin: 0; }
+  .options { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font: 500 .75rem "IBM Plex Mono", monospace; background: var(--ink); color: var(--stone); padding: 4px 8px; border-radius: 4px; }
+  @media (max-width: 820px) {
+    .steps { grid-template-columns: 1fr; }
+    .steps::before { top: 12px; bottom: 12px; left: 9px; right: auto; width: 2px; height: auto; }
+    .steps li { padding: 0 0 30px 40px; }
+  }
+
+  /* Tools */
+  .tools { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 40px; }
+  .tool { background: var(--stone); border: 1px solid var(--rule); border-radius: var(--radius); padding: 30px; display: flex; flex-direction: column; }
+  .tool .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+  .badge {
+    flex: none; font: 500 .72rem "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--pine); border: 1px solid var(--pine); padding: 4px 8px; border-radius: 4px; white-space: nowrap;
+  }
+  .tool p { color: var(--muted); }
+  .tool ul { margin: 0 0 18px; padding-left: 20px; color: var(--ink-soft); font-size: .97rem; }
+  .tool ul li { margin-bottom: 4px; }
+  .tool .foot { margin-top: auto; font-size: .95rem; }
+  .tool svg { display: block; width: 100%; height: auto; margin: 6px 0 20px; }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
+  .about img { width: 120px; height: auto; margin-bottom: 18px; }
+  .facts { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--rule); }
+  .facts li { padding: 14px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 14px; }
+  .facts li span:first-child { font: 500 .8rem "IBM Plex Mono", monospace; color: var(--pine); min-width: 92px; padding-top: 3px; text-transform: uppercase; letter-spacing: .08em; }
+  @media (max-width: 820px) { .about { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* Contact */
+  .contact { background: var(--ink); color: var(--stone); }
+  .contact .eyebrow { color: var(--gold); }
+  .contact .intro { color: #C9CED4; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; }
+  form { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+  form .full { grid-column: 1 / -1; }
+  label { display: block; font-size: .88rem; font-weight: 500; margin-bottom: 6px; color: #DCE0E4; }
+  input, select, textarea {
+    width: 100%; font: inherit; font-size: 1rem; color: var(--ink);
+    background: var(--stone); border: 2px solid transparent; border-radius: 8px; padding: 11px 13px;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); }
+  textarea { min-height: 130px; resize: vertical; }
+  .hp { position: absolute; left: -9999px; }
+  #form-status { grid-column: 1 / -1; margin: 0; min-height: 1.5em; font-size: .95rem; }
+  #form-status.ok { color: #8FD3B5; }
+  #form-status.err { color: #F2B8A0; }
+  @media (max-width: 820px) { .contact-grid { grid-template-columns: 1fr; gap: 32px; } form { grid-template-columns: 1fr; } }
+
+  footer { background: #111922; color: #8D96A0; font-size: .88rem; padding: 26px 0; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  footer a { color: #B9C0C7; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a href="#top" aria-label="Mountain Ranch Labs home"><img src="assets/mrl-logo-horizontal-reversed.svg" alt="Mountain Ranch Labs"></a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#process">How it works</a>
+      <a href="#tools">Tools</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" style="padding-bottom:0">
+  <div class="wrap">
+    <span class="eyebrow">CAD · FEA · PDM · PLM</span>
+    <h1>Make sense of your engineering systems.</h1>
+    <p class="lead">Mountain Ranch Labs helps manufacturers see, simplify, and run the software their engineers depend on. You get a view of every CAD, FEA, PDM, and PLM tool you use and of where your engineering data actually lives.</p>
+    <div class="actions">
+      <a class="btn btn-gold" href="#contact">Start a conversation</a>
+      <a class="btn btn-ghost" href="#tools">See the tools</a>
+    </div>
+  </div>
+  <!-- Ridgeline: nodes connected along a mountain line -->
+  <svg class="ridge" viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 150 L0 118 L180 96 L330 112 L520 58 L660 84 L800 22 L960 76 L1110 52 L1280 92 L1440 70 L1440 150 Z" fill="#F5F4F0"/>
+    <polyline points="0,118 180,96 330,112 520,58 660,84 800,22 960,76 1110,52 1280,92 1440,70" fill="none" stroke="#2E5A4C" stroke-width="2"/>
+    <g fill="#18222E">
+      <circle cx="180" cy="96" r="5"/><circle cx="330" cy="112" r="5"/><circle cx="520" cy="58" r="5"/>
+      <circle cx="660" cy="84" r="5"/><circle cx="960" cy="76" r="5"/><circle cx="1110" cy="52" r="5"/><circle cx="1280" cy="92" r="5"/>
+    </g>
+    <circle cx="800" cy="22" r="8" fill="#D9A034"/>
+  </svg>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="padding-top:56px">
+  <div class="wrap">
+    <span class="eyebrow">What I do</span>
+    <h2>Too many tools, too many places for data.</h2>
+    <p class="intro">Many manufacturers run several CAD packages and more than one PDM or PLM system side by side, with network drives filling the gaps. That setup is expensive to maintain and hard to govern. Engineering leaders want to standardize but rarely have the time or in-house expertise to plan it. That's the gap I fill.</p>
+    <div class="grid">
+      <div class="card"><span class="num">01</span><h3>Engineering systems audit</h3><p>An inventory of the CAD, FEA, PDM, and PLM tools you use, who uses them, where their data is stored, and how they're configured.</p></div>
+      <div class="card"><span class="num">02</span><h3>Process improvement</h3><p>A review of your engineering business processes, such as release, change, and data handoffs, with specific opportunities to improve them.</p></div>
+      <div class="card"><span class="num">03</span><h3>Architecture recommendation</h3><p>A target-state design for your engineering software environment, plus a realistic path to reach it.</p></div>
+      <div class="card"><span class="num">04</span><h3>Transformation &amp; implementation</h3><p>Hands-on help consolidating tools, migrating data, and delivering the new architecture, followed by ongoing support if you want it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="alt">
+  <div class="wrap">
+    <span class="eyebrow">How it works</span>
+    <h2>Start small. Grow only if it's worth it.</h2>
+    <p class="intro">Every engagement begins with a clear picture of where you are today. You decide how far to take it from there.</p>
+    <ol class="steps">
+      <li><h3>Map</h3><p>Use the free mapping tool to lay out your engineering software and where it stores data. Send me the export if you'd like a second set of eyes.</p></li>
+      <li><h3>Snapshot</h3><p>A short environment snapshot built from your map and a brief questionnaire. It's done remotely, so it doesn't disrupt your team.</p></li>
+      <li><h3>Audit</h3><p>A fixed-scope assessment after a discovery meeting. You get a complete report with findings and a recommended architecture.</p></li>
+      <li><h3>Act</h3><p>Choose the level of help that fits your team.</p>
+        <div class="options"><span class="tag">Fix It</span><span class="tag">Build It</span><span class="tag">Run It</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="wrap">
+    <span class="eyebrow">Tools</span>
+    <h2>Built by an engineer, for engineering teams.</h2>
+    <p class="intro">I build software to speed up the parts of this work that are usually slow and manual. Both tools are in development. <a href="#contact">Get in touch</a> to hear when they launch or to join early testing.</p>
+    <div class="tools">
+
+      <article class="tool">
+        <div class="head"><h3>Engineering Systems Mapping Tool</h3><span class="badge">Coming soon</span></div>
+        <svg viewBox="0 0 400 120" aria-hidden="true">
+          <g stroke="#2E5A4C" stroke-width="1.5" fill="none">
+            <line x1="70" y1="30" x2="200" y2="60"/><line x1="70" y1="90" x2="200" y2="60"/>
+            <line x1="200" y1="60" x2="330" y2="25"/><line x1="200" y1="60" x2="330" y2="95"/><line x1="70" y1="30" x2="330" y2="25"/>
+          </g>
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#18222E" text-anchor="middle">
+            <rect x="30" y="18" width="80" height="24" rx="5" fill="#fff" stroke="#18222E"/><text x="70" y="34">CAD</text>
+            <rect x="30" y="78" width="80" height="24" rx="5" fill="#fff" stroke="#18222E"/><text x="70" y="94">FEA</text>
+            <rect x="160" y="48" width="80" height="24" rx="5" fill="#18222E"/><text x="200" y="64" fill="#F5F4F0">PDM</text>
+            <rect x="290" y="13" width="80" height="24" rx="5" fill="#fff" stroke="#18222E"/><text x="330" y="29">PLM</text>
+            <rect x="276" y="83" width="108" height="24" rx="5" fill="#fff" stroke="#D9A034" stroke-width="2"/><text x="330" y="99">Network drive</text>
+          </g>
+        </svg>
+        <p>A visual map of your organization's engineering software and every place it stores data. You add your CAD, FEA, PDM, and PLM tools along with the network drives and vaults behind them, and the tool draws the connections for you.</p>
+        <ul>
+          <li>Free version covers a single site</li>
+          <li>Full version maps across multiple sites</li>
+          <li>Your map stays with you. Export it and send it over only if you want a review.</li>
+        </ul>
+        <p class="foot"><a href="#contact">Get notified at launch →</a></p>
+      </article>
+
+      <article class="tool">
+        <div class="head"><h3>Cross-System Data Sync Portal</h3><span class="badge">Coming soon</span></div>
+        <svg viewBox="0 0 400 120" aria-hidden="true">
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#18222E" text-anchor="middle">
+            <rect x="20" y="14" width="96" height="26" rx="5" fill="#fff" stroke="#18222E"/><text x="68" y="31">PLM: Rev C</text>
+            <rect x="20" y="47" width="96" height="26" rx="5" fill="#fff" stroke="#18222E"/><text x="68" y="64">PDM: Rev C</text>
+            <rect x="20" y="80" width="96" height="26" rx="5" fill="#fff" stroke="#D9A034" stroke-width="2"/><text x="68" y="97">ERP: Rev B</text>
+          </g>
+          <g stroke="#2E5A4C" stroke-width="1.5" fill="none">
+            <line x1="116" y1="27" x2="230" y2="60"/><line x1="116" y1="60" x2="230" y2="60"/><line x1="116" y1="93" x2="230" y2="60"/>
+          </g>
+          <circle cx="244" cy="60" r="14" fill="#18222E"/>
+          <text x="244" y="64" font-family="IBM Plex Mono, monospace" font-size="11" fill="#F5F4F0" text-anchor="middle">=?</text>
+          <rect x="278" y="44" width="104" height="32" rx="5" fill="#D9A034"/>
+          <text x="330" y="64" font-family="IBM Plex Mono, monospace" font-size="11" fill="#18222E" text-anchor="middle">1 mismatch</text>
+        </svg>
+        <p>When the same part, document, or attribute lives in more than one system, it rarely stays in sync. The portal searches across multiple data stores and checks that the information in each one matches, so mismatches turn up before they cause problems on the shop floor.</p>
+        <ul>
+          <li>Search one record across several systems at once</li>
+          <li>Flag differences in revisions, attributes, and files</li>
+          <li>Find out which source is out of step</li>
+        </ul>
+        <p class="foot"><a href="#contact">Get notified at launch →</a></p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="alt">
+  <div class="wrap about">
+    <div>
+      <img src="assets/mrl-mark-color.svg" alt="">
+      <span class="eyebrow">About</span>
+      <h2>An engineer who runs these systems every day.</h2>
+    </div>
+    <div>
+      <p>Mountain Ranch Labs is an independent consultancy founded by a mechanical engineer who works as a Teamcenter administrator and customization developer. That means a working understanding of what keeps an engineering environment healthy: user sessions, check-ins, translations, data models, and the people who rely on them.</p>
+      <p>I'm not tied to any software vendor, so my recommendations come from what fits your team, not from what someone else needs to sell.</p>
+      <ul class="facts">
+        <li><span>Focus</span><span>Manufacturers with multi-CAD and multi-PDM/PLM environments, or teams setting up engineering tools for the first time</span></li>
+        <li><span>Systems</span><span>CAD, FEA, PDM, and PLM, including Teamcenter administration and customization</span></li>
+        <li><span>Approach</span><span>Vendor-neutral. Starts with a small first engagement. Most work is done remotely.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="eyebrow">Contact</span>
+      <h2>Let's look at your environment.</h2>
+      <p class="intro">Tell me a little about your setup and what's frustrating your team. I'll reply within two business days. There's no obligation and no sales pitch.</p>
+    </div>
+    <form id="contact-form" novalidate>
+      <!-- Web3Forms: replace the value below with your access key from web3forms.com -->
+      <input type="hidden" name="access_key" value="056fc328-3e84-4fda-88ec-dc44a7af8179">
+      <input type="hidden" name="subject" value="New inquiry from mountainranchlabs.com">
+      <input type="hidden" name="from_name" value="Mountain Ranch Labs website">
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+      <div><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
+      <div><label for="company">Company</label><input id="company" name="company" autocomplete="organization"></div>
+      <div class="full"><label for="email">Work email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+      <div class="full">
+        <label for="interest">I'm interested in</label>
+        <select id="interest" name="interest">
+          <option>An engineering systems audit</option>
+          <option>Process or architecture help</option>
+          <option>Implementation or ongoing support</option>
+          <option>Early access to the Mapping Tool</option>
+          <option>Early access to the Data Sync Portal</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="full"><label for="message">Tell me about your environment</label><textarea id="message" name="message" required placeholder="e.g. SolidWorks and Creo, two PDM vaults, moving toward a single PLM…"></textarea></div>
+      <div class="full"><button class="btn btn-gold" type="submit">Send message</button></div>
+      <p id="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Mountain Ranch Laboratories LLC</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      status.className = 'err';
+      status.textContent = 'Please fill in your name, email, and a short message.';
+      return;
+    }
+    const btn = form.querySelector('button');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    status.className = ''; status.textContent = '';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        form.reset();
+        status.className = 'ok';
+        status.textContent = "Thanks, your message is on its way. I'll be in touch soon.";
+      } else { throw new Error(data.message || 'Send failed'); }
+    } catch (err) {
+      status.className = 'err';
+      status.textContent = 'Something went wrong sending your message. Please try again in a moment.';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Send message';
+    }
+  });
+</script>
+</body>
+</html>
